@@ -15,6 +15,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBindling',
+                    credentialsId: 'MyAWS,
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCSESS_KEY']]){
+                        sh(script: 'aws s3 cp /var/lib/jenkins/workspace/JenkinsPipeline S3://test-env-jenkins-kashi/')
+                }
             }
         }
         stage('Test') {
