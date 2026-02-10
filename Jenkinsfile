@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello from GitHub hook Trigger2'
+                echo 'Hello from GitHub hook Trigger'
             }
         }
         stage('Build') {
